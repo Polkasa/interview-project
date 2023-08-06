@@ -1,7 +1,12 @@
 <div class="row">
   <div class="col">
-    <p>Kod zwrotu</p>
-    <input type="number" />
-    <button>Zwróć</button>
+    <ng-container *ngIf="returnService.returnDataSubject | async as returnData; else dataNotReturned">
+      {{returnData | json}}
+    </ng-container>
+    <ng-template #dataNotReturned>
+      <p>Kod zwrotu</p>
+      <input [(ngModel)]="returnCode" type="number" />
+      <button (click)="returnPackage()">Zwróć</button>
+    </ng-template>
   </div>
 </div>
